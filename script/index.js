@@ -1,5 +1,6 @@
 
 const loadplants = async () => {
+     CategoriesSpiner(true)
      const res = await fetch('https://openapi.programming-hero.com/api/categories');
      const dataJson = await res.json();
      loadplantsdaitls(dataJson.categories)
@@ -11,8 +12,31 @@ const loadplants = async () => {
 //      displayButton.forEach(() => )
 // }
 
+const CategoriesSpiner = (stats) => {
+     if(stats){
+          document.getElementById('CategoriesContainer').classList.add('hidden');
+          document.getElementById('CategoriesSpiner').classList.remove('hidden')  
+     }else{
+          document.getElementById('CategoriesContainer').classList.remove('hidden');
+          document.getElementById('CategoriesSpiner').classList.add('hidden') 
+     }
+}
+
+
+const cardSpiner = (stats) => {
+     if(stats){
+          document.getElementById('CategoriesSpinerTwo').classList.remove('hidden')
+          document.getElementById('cardContainer').classList.add('hidden')
+     }else{
+           document.getElementById('CategoriesSpinerTwo').classList.add('hidden')
+          document.getElementById('cardContainer').classList.remove('hidden')
+     }
+}
+
+
 
 const LoeadCategories = () => {
+    cardSpiner(true)
      const url = 'https://openapi.programming-hero.com/api/plants';
      fetch(url)
           .then(res => res.json())
@@ -22,12 +46,6 @@ const LoeadCategories = () => {
           });
 }
 
-// "id": 1,
-// "image": "https://i.ibb.co.com/cSQdg7tf/mango-min.jpg",
-// "name": "Mango Tree",
-// "description": "A fast-growing tropical tree that produces delicious, juicy mangoes during summer. Its dense green canopy offers shade, while its sweet fruits are rich in vitamins and minerals.",
-// "category": "Fruit Tree",
-// "price": 500
 
 
 const displayCategories = (dataload) => {
@@ -46,7 +64,7 @@ const displayCategories = (dataload) => {
                         <div class="bg-green-200 px-3 py-1 rounded-3xl text-green-600">
                             ${data.category}
                         </div>
-                        <span class="text-lg font-bold">${data.price}</span>
+                        <span class="text-lg font-bold">$${data.price}</span>
                      </div>
                      <button class="btn bg-green-600 text-center w-full mt-2 rounded-xl text-white text-lg">Add to Cart</button>
                </div>
@@ -54,6 +72,7 @@ const displayCategories = (dataload) => {
         `
           cardContainer.append(div);
      })
+   cardSpiner(false)
 }
 
 LoeadCategories()
@@ -71,9 +90,9 @@ const loadplantsdaitls = (data) => {
                  <p class="text-xl hover:text-white"> ${words.category_name}</p>
             </div>
        `
-
           CategoriesContainer.append(div)
      })
+    CategoriesSpiner(false)
 }
 
 loadplants();
