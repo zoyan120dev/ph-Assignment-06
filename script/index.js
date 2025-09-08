@@ -1,3 +1,5 @@
+const CategoriesContainer = document.getElementById('CategoriesContainer')
+const cardContainer = document.getElementById('cardContainer');
 
 const loadplants = async () => {
      CategoriesSpiner(true)
@@ -13,22 +15,22 @@ const loadplants = async () => {
 // }
 
 const CategoriesSpiner = (stats) => {
-     if(stats){
+     if (stats) {
           document.getElementById('CategoriesContainer').classList.add('hidden');
-          document.getElementById('CategoriesSpiner').classList.remove('hidden')  
-     }else{
+          document.getElementById('CategoriesSpiner').classList.remove('hidden')
+     } else {
           document.getElementById('CategoriesContainer').classList.remove('hidden');
-          document.getElementById('CategoriesSpiner').classList.add('hidden') 
+          document.getElementById('CategoriesSpiner').classList.add('hidden')
      }
 }
 
 
 const cardSpiner = (stats) => {
-     if(stats){
+     if (stats) {
           document.getElementById('CategoriesSpinerTwo').classList.remove('hidden')
           document.getElementById('cardContainer').classList.add('hidden')
-     }else{
-           document.getElementById('CategoriesSpinerTwo').classList.add('hidden')
+     } else {
+          document.getElementById('CategoriesSpinerTwo').classList.add('hidden')
           document.getElementById('cardContainer').classList.remove('hidden')
      }
 }
@@ -36,7 +38,7 @@ const cardSpiner = (stats) => {
 
 
 const LoeadCategories = () => {
-    cardSpiner(true)
+     cardSpiner(true)
      const url = 'https://openapi.programming-hero.com/api/plants';
      fetch(url)
           .then(res => res.json())
@@ -47,9 +49,47 @@ const LoeadCategories = () => {
 }
 
 
+const LoadSingelCategories = (id) => {
+     const url = `https://openapi.programming-hero.com/api/category/${id}`;
+     fetch(url)
+          .then(res => res.json())
+          .then(data => {
+               handelSingelCategories(data.plants)
+          })
+}
+
+
+const handelSingelCategories = (valus) => {
+     //     console.log(data);
+     cardContainer.innerHTML = '';
+
+     valus.forEach(value => {
+          const div = document.createElement('div');
+          div.innerHTML = `
+      
+        <div class="bg-white shadow  p-3 m-10 md:m-0 rounded-xl transition-all hover:bg-gray-200 hover:translate-y-[-5px] cursor-pointer">
+                     <div class="">
+                        <img src=${value.image} alt="" class="md:h-[200px] md:w-[340px]  w-full h-[300px] object-cover mx-auto">
+                     </div>
+                     <h2 class="text-lg font-bold">${value.name}</h2>
+                     <p class="text-[15px] text-gray-800">${value.description}</p>
+                     <div class="flex justify-between pt-2 items-center">
+                        <div class="bg-green-200 px-3 py-1 rounded-3xl text-green-600">
+                            ${value.category}
+                        </div>
+                        <span class="text-lg font-bold">$${value.price}</span>
+                     </div>
+                     <button class="btn bg-green-600 text-center w-full mt-2 rounded-xl text-white text-lg">Add to Cart</button>
+               </div>
+      
+      `
+      cardContainer.append(div);
+     })
+}
+
+LoadSingelCategories();
 
 const displayCategories = (dataload) => {
-     const cardContainer = document.getElementById('cardContainer');
      // cardContainer.innerHTML = '';
      dataload.forEach(data => {
           const div = document.createElement('div');
@@ -72,27 +112,28 @@ const displayCategories = (dataload) => {
         `
           cardContainer.append(div);
      })
-   cardSpiner(false)
+     cardSpiner(false)
 }
 
 LoeadCategories()
 
 
+
+
 const loadplantsdaitls = (data) => {
-     // console.log(data)
-     const CategoriesContainer = document.getElementById('CategoriesContainer');
+     // console.log(data);
      CategoriesContainer.innerHTML = '';
 
      data.forEach(words => {
           const div = document.createElement('div');
           div.innerHTML = `
-            <div onclick="loaditemsword(${words.category_name})" class="transition-all hover:bg-green-600 p-2 rounded-sm cursor-pointer shadow mb-5 displayButton">
+            <div onclick="LoadSingelCategories(${words.id})" class="transition-all hover:bg-green-600 p-2 rounded-sm cursor-pointer shadow mb-5 displayButton">
                  <p class="text-xl hover:text-white"> ${words.category_name}</p>
             </div>
        `
           CategoriesContainer.append(div)
      })
-    CategoriesSpiner(false)
+     CategoriesSpiner(false)
 }
 
 loadplants();
