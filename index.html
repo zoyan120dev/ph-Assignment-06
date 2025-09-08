@@ -80,14 +80,20 @@
 
    <section class="mt-6">
       <h1 class="text-center text-3xl md:text-4xl font-bold mt-10">Choose Your Trees</h1>
-      
-     <div class="container mx-auto  grid grid-cols-1 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-5 mt-10 gap-5 mb-5">
+     <div class="container mx-auto">
+        <div class="m-10 md:m-0">
+        <h1 class="text-2xl font-bold">Categories</h1>
+        <div onclick=" LoeadCategories" class="transition-all hover:bg-green-600 p-2 rounded-sm cursor-pointer  w-[290px] my-4">
+          <p class="text-xl hover:text-white">All Trees</p>
+       </div>
+      </div>
         <!-- left right -->   
-        <span class="loading loading-bars loading-xl"  id="CategoriesSpiner"></span>
+       <div class=" grid grid-cols-1 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-5 mt-10 gap-5 mb-[10px]">
+             <span class="loading loading-bars loading-xl"  id="CategoriesSpiner"></span>
+               
+            
             <div id="CategoriesContainer" class=" m-8 md:m-0">
-                 <div>
-                    All Trees
-                 </div>
+                  
             </div>
                  <span class="loading loading-bars loading-xl hidden"  id="CategoriesSpinerTwo"></span>
              <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 col-span-3 gap-5 " id="cardContainer">
@@ -98,9 +104,59 @@
           </div>
 
          </div>
+       </div>
    </section>
          <!-- RIght -->
 
+        <!-- About the Campaign -->
+        
+        <section class="py-20  max-w-[1000px] mx-auto ">
+               <h1 class="text-center text-4xl font-bold">About the Campaign</h1>
+               <!-- Flex section -->
+                <div class="flex justify-center items-center gap-4 mt-10 flex-col md:flex-row m-10 md:m-0 py-10">
+                     <div class="flex-1">
+                        <img src="assets/about.png" alt="">
+                     </div>
+                     <div class="flex-1">
+                        <p class="text-gray-800 text-base md:text-lg tracking-tight">Green Earth is a global tree plantation initiative dedicated to fighting climate change. Since our start, we’ve planted over 500,000 trees worldwide. By joining our campaign, you help restore forests, create habitats for wildlife, and combat global warming.</p>
+                        <ul>
+                            <li class="text-lg md:text-lg"><span class="font-bold text-lg md:text-xl">.</span> Restoration of natural habitats</li>
+                            <li class="text-lg md:text-lg"><span class="font-bold text-lg md:text-xl">.</span> Improvement of air quality</li>
+                            <li class="text-lg md:text-lg"><span class="font-bold text-lg md:text-xl">.</span>Support for local communities</li>
+                        </ul>
+                     </div>
+                </div>
+        </section>
+ 
+     
+        <!-- Our Impact -->
+       
+        <section class="bg-[#CFF0DC] p-5 w-full">
+             <h1 class="text-2xl md:text-3xl font-bold text-center">Our Impact</h1>
+             <div class="flex flex-wrap gap-13 container mx-auto mt-20 justify-center">
+                  <div class="shadow transition-all rounded-xl px-10 py-4 w-[390px] h-[180px] bg-white flex flex-col items-center justify-center hover:bg-gray-300 cursor-pointer hover:translate-y-[-10px]">
+                         <div class="text-center">
+                            <h1 class="text-green-600 font-bold text-4xl md:text-5xl">500K+</h1>
+                            <p class="text-gray-800 pt-2">Trees Planted</p>
+                         </div>
+                  </div>
+                  <div class="shadow transition-all rounded-xl px-10 py-4 w-[390px] h-[180px] bg-white flex flex-col items-center justify-center hover:bg-gray-300 cursor-pointer hover:translate-y-[-10px]">
+                         <div class="text-center">
+                            <h1 class="text-green-600 font-bold text-4xl md:text-5xl">500K+</h1>
+                            <p class="text-gray-800 pt-2">Trees Planted</p>
+                         </div>
+                  </div>
+
+                  <div class="shadow transition-all rounded-xl px-10 py-4 w-[390px] h-[180px] bg-white flex flex-col items-center justify-center hover:bg-gray-300 cursor-pointer hover:translate-y-[-10px]">
+                         <div class="text-center">
+                            <h1 class="text-green-600 font-bold text-4xl md:text-5xl">500K+</h1>
+                            <p class="text-gray-800 pt-2">Trees Planted</p>
+                         </div>
+                  </div>
+             </div>
+        </section>
+
+        
 
     <script src="script/index.js"></script>
 </body>
